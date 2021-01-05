@@ -56,6 +56,7 @@ markdown_text2 = '''
 Data file edition 1.0. NSD - Norwegian Centre for Research Data, Norway - Data Archive and distributor of ESS data for ESS ERIC.
 [doi:10.21338/NSD-ESS-CUMULATIVE](https://www.europeansocialsurvey.org/downloadwizard/)
 '''
+config={'showAxisDragHandles'==False}
 # create the default figure for Dash
 fig = px.line(df, x="date", y=df.index, color="cntry",
               hover_name="cntry", line_group="cntry",
@@ -66,7 +67,7 @@ fig.update_layout(
     plot_bgcolor=colors['background'],
     paper_bgcolor=colors['background'],
     font_color=colors['text'],
-    autosize=True
+    autosize=True, dragmode=False
 )
 # Create Dash layout
 app.layout = html.Div([
@@ -80,7 +81,9 @@ app.layout = html.Div([
             dcc.Dropdown(id='dropdown_labs', style={'width': '100%', 'margin-left': '0px', 'display': 'inline-block'},
                          placeholder='Show value labels')], className="six columns"),
     ], className="row"),
-    dcc.Graph(id='ess_bar', figure=fig, style={'height': '80vh'}),
+    dcc.Graph(id='ess_bar', figure=fig, style={'height': '80vh'},
+              config= {'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'pan2d', 'lasso2d', 'hoverClosestGl2d',
+                'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}),
     dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
                                         {'label': 'Map', 'value': 'Map'}], value='Line',
                   labelStyle={'display': 'inline-block'}),
@@ -107,7 +110,6 @@ def update_date_dropdown(name):
 
 def update_graph(option_slctd, gtype):
     # Plotly Express
-    print(option_slctd, gtype)
     if gtype=='Line':
         fig = px.line(df, x="date", y=option_slctd, color="cntry",
                   hover_name="cntry", line_group="iso3166",
@@ -119,14 +121,14 @@ def update_graph(option_slctd, gtype):
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
         except:
             fig.update_layout(
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': 'Select a variable'})
         return fig
     elif gtype=='Bar':
@@ -137,14 +139,14 @@ def update_graph(option_slctd, gtype):
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
         except:
             fig.update_layout(
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': 'Select a variable'})
         return fig
     elif gtype=='Map':
@@ -160,14 +162,14 @@ def update_graph(option_slctd, gtype):
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
         except:
             fig.update_layout(
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True,
+                autosize=True, dragmode=False,
                 title={'text': 'Select a variable'})
         return fig
 # ------------------------------------------------------------------------------
