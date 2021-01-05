@@ -82,7 +82,7 @@ app.layout = html.Div([
                          placeholder='Show value labels')], className="six columns"),
     ], className="row"),
     dcc.Graph(id='ess_bar', figure=fig, style={'height': '80vh'},
-              config= {'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'pan2d', 'lasso2d', 'hoverClosestGl2d',
+              config= {'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'lasso2d', 'hoverClosestGl2d',
                 'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}),
     dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
                                         {'label': 'Map', 'value': 'Map'}], value='Line',
