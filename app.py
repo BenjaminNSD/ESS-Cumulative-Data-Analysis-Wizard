@@ -147,7 +147,6 @@ def update_graph(option_slctd, gtype):
                 autosize=True,
                 title={'text': 'Select a variable'})
         return fig
-        return fig
     elif gtype=='Map':
         fig = px.choropleth(df,
                             locations="iso3166",
