@@ -81,8 +81,8 @@ app.layout = html.Div([
             dcc.Dropdown(id='dropdown_labs', style={'width': '100%', 'margin-left': '0px', 'display': 'inline-block'},
                          placeholder='Show value labels')], className="six columns"),
     ], className="row"),
-    dcc.Graph(id='ess_bar', figure=fig, style={'height': '80vh'},
-              config= {'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'pan2d', 'zoomIn2d', 'zoomOut2d', 'lasso2d', 'hoverClosestGl2d',
+    dcc.Graph(id='ess_bar', figure=fig,
+              config= {'doubleClick' : False, 'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'zoomIn2d', 'zoomOut2d', 'lasso2d', 'hoverClosestGl2d',
                 'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}),
     dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
                                         {'label': 'Map', 'value': 'Map'}], value='Line',
@@ -139,7 +139,7 @@ def update_graph(option_slctd, gtype):
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True, dragmode=False,
+                autosize=True, dragmode='orbit',
                 title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
         except:
             fig.update_layout(
