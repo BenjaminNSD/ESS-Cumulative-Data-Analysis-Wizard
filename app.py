@@ -139,7 +139,7 @@ def update_graph(option_slctd, gtype):
                 plot_bgcolor=colors['background'],
                 paper_bgcolor=colors['background'],
                 font_color=colors['text'],
-                autosize=True, dragmode='orbit',
+                autosize=True, dragmode=False,
                 title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
         except:
             fig.update_layout(
