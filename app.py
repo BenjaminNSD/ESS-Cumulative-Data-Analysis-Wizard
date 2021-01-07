@@ -56,7 +56,7 @@ markdown_text2 = '''
 Data file edition 1.0. NSD - Norwegian Centre for Research Data, Norway - Data Archive and distributor of ESS data for ESS ERIC.
 [doi:10.21338/NSD-ESS-CUMULATIVE](https://www.europeansocialsurvey.org/downloadwizard/)
 '''
-config={'showAxisDragHandles'==False}
+
 # create the default figure for Dash
 fig = px.line(df, x="date", y=df.index, color="cntry",
               hover_name="cntry", line_group="cntry",
@@ -83,12 +83,12 @@ app.layout = html.Div([
     ], className="row"),
     dcc.Graph(id='ess_bar', figure=fig,
               config= {'doubleClick' : False, 'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'zoomIn2d', 'zoomOut2d', 'lasso2d', 'hoverClosestGl2d',
-                'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}),
+                'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}, style={'height': '50vh'}),
     dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
-                                        {'label': 'Map', 'value': 'Map'}], value='Line',
+                                        {'label': 'Map', 'value': 'Map'}, {'label': 'Heatmap', 'value': 'Heatmap'}], value='Line',
                   labelStyle={'display': 'inline-block'}),
     dcc.Markdown(children=markdown_text2, style=style_dict)],
-        style = {'margin':'auto','width': "75%"})
+        style = {'margin':'auto', "width" : "75%", "autosize" : True})
 
 
 # ------------------------------------------------------------------------------
@@ -154,9 +154,41 @@ def update_graph(option_slctd, gtype):
                             locations="iso3166",
                             color=option_slctd,
                             hover_name="cntry",
-                            color_continuous_scale='viridis',
+                            color_continuous_scale='reds',
                             scope="europe", projection='eckert4',
                             animation_frame="date")
+        try:
+            fig.update_layout(
+                plot_bgcolor=colors['background'],
+                paper_bgcolor=colors['background'],
+                font_color=colors['text'],
+                autosize=True, dragmode=False,
+                title={'text': dict_col[option_slctd] + ' (MEAN / WEIGHTED)'})
+        except:
+            fig.update_layout(
+                plot_bgcolor=colors['background'],
+                paper_bgcolor=colors['background'],
+                font_color=colors['text'],
+                autosize=True, dragmode=False,
+                title={'text': 'Select a variable'})
+        return fig
+    elif gtype=='Heatmap':
+        try:
+            fig = go.Figure(data=go.Heatmap(
+                z=df[option_slctd],
+                x=df.date,
+                y=df.cntry,
+                colorscale='reds', hoverongaps = False))
+            fig.update_xaxes(tick0=2002, dtick=2)
+            fig.update_yaxes(autorange="reversed", dtick=1, showgrid=False, showline=True)
+        except:
+            fig = go.Figure(data=go.Heatmap(
+                z=df.index,
+                x=df.date,
+                y=df.cntry,
+                colorscale='reds', hoverongaps = False))
+            fig.update_xaxes(tick0=2002, dtick=2)
+            fig.update_yaxes(autorange="reversed", dtick=1, showgrid=False, showline=True)
         try:
             fig.update_layout(
                 plot_bgcolor=colors['background'],
