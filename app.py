@@ -32,7 +32,17 @@ df['date']=df.date.astype(int)
 mapping = {'AF':'AFG', 'AL':'ALB', 'DZ':'DZA', 'AS':'ASM', 'AD':'AND', 'AO':'AGO', 'AI':'AIA', 'AQ':'ATA', 'AG':'ATG', 'AR':'ARG', 'AM':'ARM', 'AW':'ABW', 'AU':'AUS', 'AT':'AUT', 'AZ':'AZE', 'BS':'BHS', 'BH':'BHR', 'BD':'BGD', 'BB':'BRB', 'BY':'BLR', 'BE':'BEL', 'BZ':'BLZ', 'BJ':'BEN', 'BM':'BMU', 'BT':'BTN', 'BO':'BOL', 'BQ':'BES', 'BA':'BIH', 'BW':'BWA', 'BV':'BVT', 'BR':'BRA', 'IO':'IOT', 'BN':'BRN', 'BG':'BGR', 'BF':'BFA', 'BI':'BDI', 'CV':'CPV', 'KH':'KHM', 'CM':'CMR', 'CA':'CAN', 'KY':'CYM', 'CF':'CAF', 'TD':'TCD', 'CL':'CHL', 'CN':'CHN', 'CX':'CXR', 'CC':'CCK', 'CO':'COL', 'KM':'COM', 'CD':'COD', 'CG':'COG', 'CK':'COK', 'CR':'CRI', 'HR':'HRV', 'CU':'CUB', 'CW':'CUW', 'CY':'CYP', 'CZ':'CZE', 'CI':'CIV', 'DK':'DNK', 'DJ':'DJI', 'DM':'DMA', 'DO':'DOM', 'EC':'ECU', 'EG':'EGY', 'SV':'SLV', 'GQ':'GNQ', 'ER':'ERI', 'EE':'EST', 'SZ':'SWZ', 'ET':'ETH', 'FK':'FLK', 'FO':'FRO', 'FJ':'FJI', 'FI':'FIN', 'FR':'FRA', 'GF':'GUF', 'PF':'PYF', 'TF':'ATF', 'GA':'GAB', 'GM':'GMB', 'GE':'GEO', 'DE':'DEU', 'GH':'GHA', 'GI':'GIB', 'GR':'GRC', 'GL':'GRL', 'GD':'GRD', 'GP':'GLP', 'GU':'GUM', 'GT':'GTM', 'GG':'GGY', 'GN':'GIN', 'GW':'GNB', 'GY':'GUY', 'HT':'HTI', 'HM':'HMD', 'VA':'VAT', 'HN':'HND', 'HK':'HKG', 'HU':'HUN', 'IS':'ISL', 'IN':'IND', 'ID':'IDN', 'IR':'IRN', 'IQ':'IRQ', 'IE':'IRL', 'IM':'IMN', 'IL':'ISR', 'IT':'ITA', 'JM':'JAM', 'JP':'JPN', 'JE':'JEY', 'JO':'JOR', 'KZ':'KAZ', 'KE':'KEN', 'KI':'KIR', 'KP':'PRK', 'KR':'KOR', 'KW':'KWT', 'KG':'KGZ', 'LA':'LAO', 'LV':'LVA', 'LB':'LBN', 'LS':'LSO', 'LR':'LBR', 'LY':'LBY', 'LI':'LIE', 'LT':'LTU', 'LU':'LUX', 'MO':'MAC', 'MG':'MDG', 'MW':'MWI', 'MY':'MYS', 'MV':'MDV', 'ML':'MLI', 'MT':'MLT', 'MH':'MHL', 'MQ':'MTQ', 'MR':'MRT', 'MU':'MUS', 'YT':'MYT', 'MX':'MEX', 'FM':'FSM', 'MD':'MDA', 'MC':'MCO', 'MN':'MNG', 'ME':'MNE', 'MS':'MSR', 'MA':'MAR', 'MZ':'MOZ', 'MM':'MMR', 'NA':'NAM', 'NR':'NRU', 'NP':'NPL', 'NL':'NLD', 'NC':'NCL', 'NZ':'NZL', 'NI':'NIC', 'NE':'NER', 'NG':'NGA', 'NU':'NIU', 'NF':'NFK', 'MP':'MNP', 'NO':'NOR', 'OM':'OMN', 'PK':'PAK', 'PW':'PLW', 'PS':'PSE', 'PA':'PAN', 'PG':'PNG', 'PY':'PRY', 'PE':'PER', 'PH':'PHL', 'PN':'PCN', 'PL':'POL', 'PT':'PRT', 'PR':'PRI', 'QA':'QAT', 'MK':'MKD', 'RO':'ROU', 'RU':'RUS', 'RW':'RWA', 'RE':'REU', 'BL':'BLM', 'SH':'SHN', 'KN':'KNA', 'LC':'LCA', 'MF':'MAF', 'PM':'SPM', 'VC':'VCT', 'WS':'WSM', 'SM':'SMR', 'ST':'STP', 'SA':'SAU', 'SN':'SEN', 'RS':'SRB', 'SC':'SYC', 'SL':'SLE', 'SG':'SGP', 'SX':'SXM', 'SK':'SVK', 'SI':'SVN', 'SB':'SLB', 'SO':'SOM', 'ZA':'ZAF', 'GS':'SGS', 'SS':'SSD', 'ES':'ESP', 'LK':'LKA', 'SD':'SDN', 'SR':'SUR', 'SJ':'SJM', 'SE':'SWE', 'CH':'CHE', 'SY':'SYR', 'TW':'TWN', 'TJ':'TJK', 'TZ':'TZA', 'TH':'THA', 'TL':'TLS', 'TG':'TGO', 'TK':'TKL', 'TO':'TON', 'TT':'TTO', 'TN':'TUN', 'TR':'TUR', 'TM':'TKM', 'TC':'TCA', 'TV':'TUV', 'UG':'UGA', 'UA':'UKR', 'AE':'ARE', 'GB':'GBR', 'UM':'UMI', 'US':'USA', 'UY':'URY', 'UZ':'UZB', 'VU':'VUT', 'VE':'VEN', 'VN':'VNM', 'VG':'VGB', 'VI':'VIR', 'WF':'WLF', 'EH':'ESH', 'YE':'YEM', 'ZM':'ZMB', 'ZW':'ZWE', 'AX':'ALA'}
 df['iso3166']=df.cntry.replace(mapping)
 df=df.round(2)
-
+# add missing not participating countries to df for bar chart
+v1=[]
+v2=[]
+for i in list(df.date.unique()):
+    for x in list(sorted(df.cntry.unique())):
+        v1.append(x)
+        v2.append(i)
+df2 = pd.DataFrame(list(zip(v2, v1)), columns =['date', 'cntry'])
+df3=df2.merge(df, on=['date', 'cntry'], how='left')
+df_bar=df3.copy(deep=True)
+df_bar=df_bar.replace({np.nan:0})
 # create lists with variable labels to be used in Dash graphs
 dict_col=meta.column_names_to_labels
 # remove redundant variables from label list
@@ -45,6 +55,9 @@ def update_list(var):
     val_lab = meta.variable_value_labels[var]
     list_of_dict2 = [{'label': str(int(key)) + ' '+ value, 'value': key, 'disabled': True} for key, value in val_lab.items()]
     return list_of_dict2
+# values for country dropdown
+cntry_list = list(df.cntry.unique())
+list_of_dictc = [{'label': i, 'value': i} for i in cntry_list]
 # ------------------------------------------------------------------------------
 # define text to be used in Dash
 markdown_text = '''
@@ -58,7 +71,8 @@ Data file edition 1.0. NSD - Norwegian Centre for Research Data, Norway - Data A
 '''
 
 # create the default figure for Dash
-fig = px.line(df, x="date", y=df.index, color="cntry",
+con=df.cntry.isin(cntry_list)
+fig = px.line(df.loc[con], x="date", y=df.loc[con].index, color="cntry",
               hover_name="cntry", line_group="cntry",
         line_shape="spline", render_mode="svg", title='',
                    range_x =[2002, 2018]).update_traces(mode='lines+markers')
@@ -79,16 +93,24 @@ app.layout = html.Div([
                          placeholder='Select a variable')], className="six columns"),
         html.Div([
             dcc.Dropdown(id='dropdown_labs', style={'width': '100%', 'margin-left': '0px', 'display': 'inline-block'},
-                         placeholder='Show value labels')], className="six columns"),
+                         placeholder='Show value labels')], className="six columns")
     ], className="row"),
     dcc.Graph(id='ess_bar', figure=fig,
               config= {'doubleClick' : False, 'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'zoomIn2d', 'zoomOut2d', 'lasso2d', 'hoverClosestGl2d',
                 'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}, style={'autosize' : True}),
-    dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
-                                        {'label': 'Map', 'value': 'Map'}, {'label': 'Heatmap', 'value': 'Heatmap'}], value='Line',
-                  labelStyle={'display': 'inline-block'}),
-    dcc.Markdown(children=markdown_text2, style=style_dict)],
-        style = {'margin':'auto', "width" : "80%", "autosize" : True})
+    html.Div([
+        html.Div([
+            dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
+                                        {'label': 'Map', 'value': 'Map'}, {'label': 'Heatmap', 'value': 'Heatmap'}], value='Line', labelStyle={'display': 'inline-block'},
+                          )],
+            className="two columns"),
+        html.Div([
+            dcc.Dropdown(id='dropdown_cntry', options=list_of_dictc,
+                         style={'width': '100%', 'margin-left': '0px'}, multi=True,
+                         placeholder='Select countries')], className="two columns")
+        ], className="row"),
+    dcc.Markdown(children=markdown_text2, style=style_dict),
+])
 
 
 # ------------------------------------------------------------------------------
@@ -106,12 +128,22 @@ def update_date_dropdown(name):
 @app.callback(
     Output('ess_bar', 'figure'),
     Input('dropdown_vars', 'value'),
-    Input('radio', 'value'))
+    Input('radio', 'value'),
+    Input('dropdown_cntry', 'value'))
 
-def update_graph(option_slctd, gtype):
+def update_graph(option_slctd, gtype, cntry_opt):
     # Plotly Express
+    if cntry_opt is None:
+        lands=cntry_list
+    elif len(cntry_opt) <1:
+        lands = cntry_list
+    else:
+        lands=list(cntry_opt)
+    df_sub=df.loc[df.cntry.isin(lands)]
+    df_sub2 = df_bar.loc[df_bar.cntry.isin(lands)]
+
     if gtype=='Line':
-        fig = px.line(df, x="date", y=option_slctd, color="cntry",
+        fig = px.line(df_sub, x="date", y=option_slctd, color="cntry",
                   hover_name="cntry", line_group="iso3166",
                   line_shape="spline", render_mode="svg",
                   range_x=[2002, 2018]).update_traces(mode='lines+markers')
@@ -132,7 +164,7 @@ def update_graph(option_slctd, gtype):
                 title={'text': 'Select a variable'})
         return fig
     elif gtype=='Bar':
-        fig = px.bar(df, x="cntry", y=option_slctd, color='cntry', animation_frame='date', hover_name='cntry',
+        fig = px.bar(df_sub2, x="cntry", y=option_slctd, color='cntry', animation_frame='date', hover_name='cntry',
                        orientation='v', title='')
         try:
             fig.update_layout(
@@ -150,7 +182,7 @@ def update_graph(option_slctd, gtype):
                 title={'text': 'Select a variable'})
         return fig
     elif gtype=='Map':
-        fig = px.choropleth(df,
+        fig = px.choropleth(df_sub,
                             locations="iso3166",
                             color=option_slctd,
                             hover_name="cntry",
@@ -175,17 +207,17 @@ def update_graph(option_slctd, gtype):
     elif gtype=='Heatmap':
         try:
             fig = go.Figure(data=go.Heatmap(
-                z=df[option_slctd],
-                x=df.date,
-                y=df.cntry,
+                z=df_sub[option_slctd],
+                x=df_sub.date,
+                y=df_sub.cntry,
                 colorscale='reds', hoverongaps = False))
             fig.update_xaxes(tick0=2002, dtick=2)
             fig.update_yaxes(autorange="reversed", dtick=1, showgrid=False, showline=True)
         except:
             fig = go.Figure(data=go.Heatmap(
-                z=df.index,
-                x=df.date,
-                y=df.cntry,
+                z=df_sub.index,
+                x=df_sub.date,
+                y=df_sub.cntry,
                 colorscale='reds', hoverongaps = False))
             fig.update_xaxes(tick0=2002, dtick=2)
             fig.update_yaxes(autorange="reversed", dtick=1, showgrid=False, showline=True)
