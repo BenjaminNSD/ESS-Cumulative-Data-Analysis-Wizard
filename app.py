@@ -83,12 +83,12 @@ app.layout = html.Div([
     ], className="row"),
     dcc.Graph(id='ess_bar', figure=fig,
               config= {'doubleClick' : False, 'displaylogo': False, 'modeBarButtonsToRemove':['zoom2d', 'zoomIn2d', 'zoomOut2d', 'lasso2d', 'hoverClosestGl2d',
-                'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}, style={'height': '50vh'}),
+                'hoverCompareCartesian', 'toggleSpikelines', 'select2d', 'hoverClosestCartesian', 'hoverClosestGeo']}, style={'autosize' : True}),
     dcc.RadioItems(id='radio', options=[{'label': 'Line', 'value': 'Line'}, {'label': 'Bar', 'value': 'Bar'},
                                         {'label': 'Map', 'value': 'Map'}, {'label': 'Heatmap', 'value': 'Heatmap'}], value='Line',
                   labelStyle={'display': 'inline-block'}),
     dcc.Markdown(children=markdown_text2, style=style_dict)],
-        style = {'margin':'auto', "width" : "75%", "autosize" : True})
+        style = {'margin':'auto', "width" : "80%", "autosize" : True})
 
 
 # ------------------------------------------------------------------------------
