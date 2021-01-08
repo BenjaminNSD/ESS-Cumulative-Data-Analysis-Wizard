@@ -61,7 +61,7 @@ list_of_dictc = [{'label': i, 'value': i} for i in cntry_list]
 # ------------------------------------------------------------------------------
 # define text to be used in Dash
 markdown_text = '''
-### ESS Cumulative Data Analysis Wizard ###
+### ESS Cumulative Data Analysis App ###
 This is my first interactive dashboard using Dash! Hope you like it. Creator: [Benjamin_Beuster](mailto:benjamin.beuster@gmail.com)
 '''
 markdown_text2 = '''
