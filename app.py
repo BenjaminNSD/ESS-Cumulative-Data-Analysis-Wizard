@@ -61,13 +61,13 @@ list_of_dictc = [{'label': i, 'value': i} for i in cntry_list]
 # ------------------------------------------------------------------------------
 # define text to be used in Dash
 markdown_text = '''
-### ESS Cumulative Data Analysis Wizard ###
+### ESS Cumulative Data Analysis App ###
 This is my first interactive dashboard using Dash! Hope you like it. Creator: [Benjamin_Beuster](mailto:benjamin.beuster@gmail.com)
 '''
 markdown_text2 = '''
 ##### European Social Survey Cumulative File, ESS 1-9 (2020). #####
 Data file edition 1.0. NSD - Norwegian Centre for Research Data, Norway - Data Archive and distributor of ESS data for ESS ERIC.
-[doi:10.21338/NSD-ESS-CUMULATIVE](https://www.europeansocialsurvey.org/downloadwizard/)
+[doi:10.21338/NSD-ESS-CUMULATIVE](https://www.europeansocialsurvey.org/downloadApp/)
 '''
 
 # create the default figure for Dash
@@ -237,9 +237,10 @@ def update_graph(option_slctd, gtype, cntry_opt):
         return fig
     elif gtype == 'Sunburst':
         try:
-            fig = px.sunburst(df_sub, path=['date', 'cntry', option_slctd], values=df_sub[option_slctd])
+            fig = px.sunburst(df_sub, path=['date', 'cntry', option_slctd], values=df_sub[option_slctd],
+                              color=df_sub[option_slctd], color_continuous_scale='reds')
         except:
-            fig = px.sunburst(df_sub, path=['date', 'cntry'], values=df_sub.index)
+            fig = px.sunburst(df_sub, path=['date', 'cntry'])
         try:
             fig.update_layout(
                 plot_bgcolor=colors['background'],
