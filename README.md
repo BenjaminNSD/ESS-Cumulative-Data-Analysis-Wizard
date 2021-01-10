@@ -1,7 +1,7 @@
 # ESS-Cumulative-Data-Anlysis-Wizard
 This is my first interactive dashboard using Dash! I hope you like it. 
 
-In this Dashboard you can view line, bar and map charts of 50 ESS variables (ESS Cumlative data). 
+In this Dashboard you can view line, bar, map, heatmap and sunburst charts of about 50 variables from the European Social Survey (ESS Cumlative data). 
 
 The result is available from this website: https://beldebi.pythonanywhere.com/
 
